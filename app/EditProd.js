@@ -13,7 +13,7 @@ import * as ImagePicker from 'expo-image-picker';
 
 const { width } = Dimensions.get('screen');
 
-export default function AddProd({ navigation }: { navigation: any }) {
+export default function AddProd({ navigation }) {
   const [image, setImage] = useState(null);
   const [nome, setNome] =  useState('');  
   const [desc, setDesc] =  useState('');

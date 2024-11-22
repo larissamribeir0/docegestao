@@ -6,6 +6,26 @@ const {width} = Dimensions.get('screen')
 const {height} = Dimensions.get('screen')
 
 export default function HomeCliente({ navigation }) {
+  const [nome, setNome] =  useState('');
+  const [desc, setDesc] =  useState('');
+  const [preco, setPreco] =  useState('');
+  const [image, setImage] =  useState('');
+
+   const username = 'user1';
+
+    //Recuperar dados do banco de dados
+    const refer = ref(db, 'produtos/' + username);
+
+    useEffect(() => {
+        onValue(refer, (snapshot) => {
+        const data = snapshot.val();
+        setNome(data.nomeProd);
+        setDesc(data.descProd);
+        setImage(data.imageProd);
+        setPreco(data.precoProd);
+        });
+    })
+
   return (
     <View style={styles.backgroundView}>
       <View style={styles.mainView}>
@@ -97,13 +117,10 @@ export default function HomeCliente({ navigation }) {
           </View>
           <View style={styles.produtos}>
             <View style={styles.produto}>
-              <Image
-                source={require('./assets/boloChoco.png')}
-                style={styles.imgProdutos}
-              />
+              {image !== '' && <Image style={styles.imgProdutos} source={{uri: image}}/>}
               <Text style={styles.categoria}>Categoria</Text>
-              <Text style={styles.nome}>Nome do produto</Text>
-              <Text style={styles.preco}>R$ 00,00</Text>
+              {nome !== '' && <Text style={styles.nome}>{nome}</Text>}
+              {preco !== '' && <Text style={styles.preco}>{preco}</Text>}
             </View>
             <View style={styles.produto}>
               <Image

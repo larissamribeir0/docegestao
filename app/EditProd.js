@@ -19,7 +19,8 @@ export default function AddProd({ navigation }) {
   const [desc, setDesc] =  useState('');
   const [preco, setPreco] =  useState('');
   const [quant, setQuant] = useState('');
-
+  
+//Escolher uma imagem da galeria
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
